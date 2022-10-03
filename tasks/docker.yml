@@ -21,5 +21,6 @@
   shell: groupadd docker
   tags:
     - docker
+  igonore_errors: yes
 - name: Add user to docker group
   shell: usermod -aG docker {{user}}
