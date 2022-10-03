@@ -1,0 +1,24 @@
+- name: Install neovim build requirements
+  apt:
+    name: ["ninja-build", "gettext", "libtool", "libtool-bin", "autoconf", "automake", "cmake", "g++", "pkg-config", "unzip", "curl", "doxygen"]
+  tags:
+    - neovim
+- name: Clone neovim repo
+  ansible.builtin.git:
+    repo: https://github.com/neovim/neovim
+    dest: /tmp/neovim
+  tags:
+    - neovim
+- name: Build neovim
+  make: 
+    chdir: /tmp/neovim
+    params:
+      CMAKE_BUILD_TYPE=Release
+  tags:
+    - neovim
+- name: Install neovim
+  make:
+    chdir: /tmp/neovim
+    target: install
+  tags:
+    - neovim

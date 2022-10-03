@@ -1,0 +1,14 @@
+- hosts: localhost
+  become: true
+  pre_tasks:
+    - name: Update cache
+      apt:
+        update_cache: true
+      tags:
+        - zsh
+        - neovim
+        - docker
+  tasks:
+    - include: tasks/zsh.yml
+    - include: tasks/neovim.yml
+    - include: tasks/docker.yml
