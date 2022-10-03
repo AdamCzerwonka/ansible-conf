@@ -7,7 +7,7 @@
   shell: mkdir -p /etc/apt/keyrings && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
   tags:
     - docker
-- name: Set up the repo
+- name: Set up docker repo
   shell: echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
   tags:
     - docker
@@ -17,3 +17,9 @@
     name: ["docker-ce", "docker-ce-cli", "containerd.io", "docker-compose-plugin"]
   tags:
     - docker
+- name: Create docker group
+  shell: groupadd docker
+  tags:
+    - docker
+- name: Add user to docker group
+  shell: usermod -aG docker {{user}}
