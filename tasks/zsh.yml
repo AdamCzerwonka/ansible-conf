@@ -4,7 +4,7 @@
     - zsh
 - name: Install oh-my-zsh
   shell: sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-  become_user: adam
+  become_user: {{user}}
   tags:
     - zsh
 - name: Install zsh-autosuggestions
@@ -15,5 +15,6 @@
     - zsh
 - name: Change shell
   shell: chsh -s `which zsh`
+  become_user: {{user}}
   tags:
     - zsh
