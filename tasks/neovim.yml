@@ -1,4 +1,5 @@
 - name: Install neovim build requirements
+  become: true
   apt:
     name: ["ninja-build", "gettext", "libtool", "libtool-bin", "autoconf", "automake", "cmake", "g++", "pkg-config", "unzip", "curl", "doxygen"]
   tags:
