@@ -1,5 +1,3 @@
-user: "adam"
-
 - hosts: localhost
   pre_tasks:
     - name: Update cache
