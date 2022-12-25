@@ -18,6 +18,7 @@
   tags:
     - neovim
 - name: Install neovim
+  become: true
   make:
     chdir: /tmp/neovim
     target: install
