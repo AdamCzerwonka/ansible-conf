@@ -29,6 +29,8 @@
     - docker
   ignore_errors: yes
 - name: Add user to docker group
+  become: true
   ansible.builtin.user:
+    user: "{{ ansible_user_id }}"
     append: true
     groups: ['docker']
