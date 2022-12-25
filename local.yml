@@ -1,20 +1,15 @@
 - hosts: localhost
   pre_tasks:
-    - name: Update cache
+    - name: Update cache and install basic deps
       become: true
       apt:
         update_cache: true
+        name: ["curl", "make"]
       tags:
         - zsh
         - neovim
         - docker
-    - name: Install curl
-      become: true
-      apt: name=curl
-      tags:
-        - zsh
-        - neovim
-        - docker
+        - node
   tasks:
     - include: tasks/zsh.yml
     - include: tasks/neovim.yml
