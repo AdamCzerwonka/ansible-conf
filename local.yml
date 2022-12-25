@@ -10,7 +10,7 @@
         - docker
     - name: Install curl
       become: true
-      apt: curl
+      apt: name=curl
       tags:
         - zsh
         - neovim

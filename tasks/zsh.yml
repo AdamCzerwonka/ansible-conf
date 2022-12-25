@@ -16,7 +16,7 @@
 - name: Change shell
   become: true
   user:
-    name: {{ "ansible_user_id" }}
+    name: "{{ ansible_user_id }}"
     shell: /bin/zsh
   tags:
     - zsh
