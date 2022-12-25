@@ -19,3 +19,4 @@
     - include: tasks/zsh.yml
     - include: tasks/neovim.yml
     - include: tasks/docker.yml
+    - include: tasks/nodejs.yml
