@@ -8,6 +8,13 @@
         - zsh
         - neovim
         - docker
+    - name: Install curl
+      become: true
+      apt: curl
+      tags:
+        - zsh
+        - neovim
+        - docker
   tasks:
     - include: tasks/zsh.yml
     - include: tasks/neovim.yml
