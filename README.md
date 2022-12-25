@@ -26,3 +26,4 @@ You can specify parts you want to run with `-t`, list of tags is bellow.
 - Install zsh and oh-my-zsh (tag `zsh`)
 - Build and install neovim (tag `neovim`)
 - Install docker and add curent user to docker group (tag `docker`)
+- Install n (nodejs package manager) and nodejs LTS (tag `node`)
