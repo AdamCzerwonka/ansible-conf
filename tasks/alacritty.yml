@@ -1,0 +1,51 @@
+- name: Clone alacritty repo
+  ansible.builtin.git:
+    repo: https://github.com/alacritty/alacritty.git
+    dest: /tmp/alacritty
+  tags:
+    - alacritty
+- name: Install build dependencies
+  become: true
+  apt:
+    name: ["cmake", "pkg-config", "libfreetype6-dev", "libfontconfig1-dev", "libxcb-xfixes0-dev", "libxkbcommon-dev", "python3"]
+  tags:
+    - alacritty
+- name: Build alacritty
+  shell:
+    cmd: cargo build --release
+    chdir: /tmp/alacritty
+  tags:
+    - alacritty
+- name: Copy to /usr/local/bin
+  become: true
+  shell: 
+    cmd: cp target/release/alacritty /usr/local/bin
+    chdir: /tmp/alacritty
+  tags:
+    - alacritty
+- name: Check if alacritty terminfo is installed
+  shell: infocmp alacritty
+  register: terminfo_exists
+  ignore_errors: yes
+  tags:
+    - alacritty
+- name: Install terminfo
+  when: terminfo_exists is failed
+  become: true
+  shell:
+    cmd: tic -xe alacritty,alacritty-direct extra/alacritty.info
+    chdir: /tmp/alacritty
+  tags:
+    - alacritty
+- name: Add Desktop entry
+  become: true
+  shell:
+    cmd: |
+      cp extra/logo/alacritty-term.svg /usr/share/pixmaps/Alacritty.svg
+      desktop-file-install extra/linux/Alacritty.desktop
+      update-desktop-database
+    chdir: /tmp/alacritty
+  tags:
+    - alacritty
+
+

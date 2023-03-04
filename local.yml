@@ -10,8 +10,14 @@
         - neovim
         - docker
         - node
+        - brave
+        - rust
+        - alacritty
   tasks:
     - include: tasks/zsh.yml
     - include: tasks/neovim.yml
     - include: tasks/docker.yml
     - include: tasks/nodejs.yml
+    - include: tasks/brave.yml
+    - include: tasks/rust.yml
+    - include: tasks/alacritty.yml
